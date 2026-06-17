@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>ef-migration-safety</ToolCommandName>
+    <PackageId>EfMigrationSafety.Cli</PackageId>
+    <Version>0.1.0</Version>
+    <Description>Static safety analyzer for EF Core migrations</Description>
+    <Authors>Halil İbrahim Sayın</Authors>
+    <PackageProjectUrl>https://github.com/sayinbrahim/ef-migration-safety</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sayinbrahim/ef-migration-safety</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>efcore;migrations;safety;analyzer;cli</PackageTags>
+    <RootNamespace>EfMigrationSafety.Cli</RootNamespace>
+    <AssemblyName>EfMigrationSafety.Cli</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+    <PackageReference Include="Spectre.Console" Version="0.48.0" />
+  </ItemGroup>
+
+</Project>
