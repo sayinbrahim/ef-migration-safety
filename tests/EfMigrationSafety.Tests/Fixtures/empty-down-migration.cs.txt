@@ -1,0 +1,34 @@
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace MyApp.Data.Migrations
+{
+    /// <inheritdoc />
+    public partial class AddAuditColumns : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AddColumn<DateTime>(
+                name: "CreatedAt",
+                table: "Orders",
+                type: "datetime2",
+                nullable: false,
+                defaultValueSql: "GETUTCDATE()");
+
+            migrationBuilder.AddColumn<string>(
+                name: "CreatedBy",
+                table: "Orders",
+                type: "nvarchar(100)",
+                maxLength: 100,
+                nullable: true);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+        }
+    }
+}

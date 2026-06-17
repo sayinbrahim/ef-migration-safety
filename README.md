@@ -51,7 +51,7 @@ Summary: 1 of 12 migration(s) have safety warnings.
 |---|---|---|
 | `DropAddColumn` | **Implemented** | `DropColumn` + `AddColumn` on the same column name inside `Up()` — destroys all column data |
 | `NonNullableWithoutDefault` | **Implemented** | Adding a non-nullable column to an existing table without a default value — fails on non-empty tables |
-| `EmptyDownMethod` | Coming soon | `Down()` method that is empty or throws `NotImplementedException` — makes rollbacks impossible |
+| `EmptyDownMethod` | **Implemented** | `Down()` method that is empty or throws `NotImplementedException` — makes rollbacks impossible |
 | `RenameOperation` | Coming soon | `RenameColumn` / `RenameTable` without coordinated application code update — breaks running instances |
 
 ---

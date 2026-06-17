@@ -1,0 +1,31 @@
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace MyApp.Data.Migrations
+{
+    /// <inheritdoc />
+    public partial class SeedReferenceData : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.InsertData(
+                table: "Currencies",
+                columns: new[] { "Code", "Name" },
+                values: new object[]
+                {
+                    new object[] { "USD", "US Dollar" },
+                    new object[] { "EUR", "Euro" },
+                    new object[] { "GBP", "British Pound" },
+                });
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
