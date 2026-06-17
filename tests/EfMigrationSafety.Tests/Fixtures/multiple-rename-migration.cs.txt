@@ -1,0 +1,39 @@
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace MyApp.Data.Migrations
+{
+    /// <inheritdoc />
+    public partial class RenameCustomerIdToClientId : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.RenameColumn(
+                name: "CustomerId",
+                table: "Orders",
+                newName: "ClientId");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
+                newName: "IX_Orders_ClientId");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.RenameIndex(
+                name: "IX_Orders_ClientId",
+                table: "Orders",
+                newName: "IX_Orders_CustomerId");
+
+            migrationBuilder.RenameColumn(
+                name: "ClientId",
+                table: "Orders",
+                newName: "CustomerId");
+        }
+    }
+}

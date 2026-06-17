@@ -40,7 +40,11 @@ ef-migration-safety check ./src/MyApp/Migrations --output json
   ⚠ Line 18: DropColumn + AddColumn pattern detected for column 'Email' (potential data loss). Use RenameColumn instead to preserve data.
     Recommendation: If this is a rename, replace with migrationBuilder.RenameColumn(). If this is intentional column replacement, document the data backfill strategy.
 
-Summary: 1 of 12 migration(s) have safety warnings.
+20240320100000_RenameEmailColumn.cs
+  ℹ Line 12: Column rename detected: 'Email' → 'EmailAddress' on table 'Users'. Ensure all application code, queries, and ORM mappings referencing 'Email' are updated in the same deployment.
+    Recommendation: Search the codebase for the old name before deploying. Common locations: entity classes, LINQ queries, raw SQL, stored procedures, reports, integration mappings.
+
+Summary: 10 file(s) clean, 1 with info, 1 with warnings.
 ```
 
 ---
@@ -52,7 +56,7 @@ Summary: 1 of 12 migration(s) have safety warnings.
 | `DropAddColumn` | **Implemented** | `DropColumn` + `AddColumn` on the same column name inside `Up()` — destroys all column data |
 | `NonNullableWithoutDefault` | **Implemented** | Adding a non-nullable column to an existing table without a default value — fails on non-empty tables |
 | `EmptyDownMethod` | **Implemented** | `Down()` method that is empty or throws `NotImplementedException` — makes rollbacks impossible |
-| `RenameOperation` | Coming soon | `RenameColumn` / `RenameTable` without coordinated application code update — breaks running instances |
+| `RenameOperation` | **Implemented** (Info) | `RenameColumn` / `RenameTable` without coordinated application code update — breaks running instances |
 
 ---
 

@@ -38,7 +38,8 @@ public class ConsoleReporter
                 {
                     Severity.Error   => ("✗", "red"),
                     Severity.Warning => ("⚠", "yellow"),
-                    _                => ("i", "blue"),
+                    Severity.Info    => ("ℹ", "cyan"),
+                    _                => ("ℹ", "cyan"),
                 };
 
                 AnsiConsole.MarkupLine(
@@ -56,15 +57,20 @@ public class ConsoleReporter
             AnsiConsole.WriteLine();
         }
 
-        var filesWithIssues = issues.Select(i => i.FilePath).Distinct().Count();
+        var filesWithAnyIssue     = new HashSet<string>(issues.Select(i => i.FilePath));
+        var filesWithWarnings     = new HashSet<string>(issues.Where(i => i.Severity >= Severity.Warning).Select(i => i.FilePath));
+        var infoOnlyCount         = filesWithAnyIssue.Count - filesWithWarnings.Count;
+        var cleanCount            = totalFilesScanned - filesWithAnyIssue.Count;
+
         AnsiConsole.MarkupLine(
-            "[yellow]Summary:[/] {0} of {1} migration(s) have safety warnings.",
-            filesWithIssues, totalFilesScanned);
+            "[bold]Summary:[/] {0} file(s) clean, {1} with info, {2} with warnings.",
+            cleanCount, infoOnlyCount, filesWithWarnings.Count);
     }
 
     private static void ReportJson(IReadOnlyList<SafetyIssue> issues, int totalFilesScanned)
     {
-        var filesWithIssues = issues.Select(i => i.FilePath).Distinct().Count();
+        var filesWithAnyIssue = new HashSet<string>(issues.Select(i => i.FilePath));
+        var filesWithWarnings = new HashSet<string>(issues.Where(i => i.Severity >= Severity.Warning).Select(i => i.FilePath));
 
         var payload = new
         {
@@ -85,7 +91,9 @@ public class ConsoleReporter
             summary = new
             {
                 totalFiles = totalFilesScanned,
-                filesWithIssues,
+                cleanFiles = totalFilesScanned - filesWithAnyIssue.Count,
+                filesWithInfo = filesWithAnyIssue.Count - filesWithWarnings.Count,
+                filesWithWarnings = filesWithWarnings.Count,
                 totalIssues = issues.Count,
             }
         };

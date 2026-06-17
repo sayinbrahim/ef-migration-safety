@@ -30,6 +30,17 @@ internal static class AnalyzerHelpers
         return null;
     }
 
+    internal static string? ExtractArgument(string parameterName, InvocationExpressionSyntax invocation)
+    {
+        var arg = invocation.ArgumentList.Arguments.FirstOrDefault(a =>
+            a.NameColon?.Name.Identifier.Text == parameterName);
+
+        if (arg?.Expression is LiteralExpressionSyntax lit)
+            return lit.Token.ValueText;
+
+        return null;
+    }
+
     internal static bool IsInsideCreateTable(SyntaxNode node)
     {
         var current = node.Parent;

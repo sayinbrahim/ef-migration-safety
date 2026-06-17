@@ -1,0 +1,29 @@
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace MyApp.Data.Migrations
+{
+    /// <inheritdoc />
+    public partial class RenameEmailToEmailAddress : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.RenameColumn(
+                name: "Email",
+                table: "Users",
+                newName: "EmailAddress");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.RenameColumn(
+                name: "EmailAddress",
+                table: "Users",
+                newName: "Email");
+        }
+    }
+}
