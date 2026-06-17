@@ -1,0 +1,32 @@
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace MyApp.Data.Migrations
+{
+    /// <inheritdoc />
+    public partial class AddStatusCodeColumn : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            // DANGEROUS: nullable: false with no defaultValue will throw
+            // "column contains null values" on any table that already has rows.
+            migrationBuilder.AddColumn<string>(
+                name: "StatusCode",
+                table: "Orders",
+                type: "nvarchar(10)",
+                maxLength: 10,
+                nullable: false);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "StatusCode",
+                table: "Orders");
+        }
+    }
+}

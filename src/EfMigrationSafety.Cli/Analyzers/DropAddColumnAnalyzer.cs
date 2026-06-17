@@ -28,11 +28,11 @@ public class DropAddColumnAnalyzer : IMigrationAnalyzer
 
             foreach (var invocation in invocations)
             {
-                var methodName = GetMethodName(invocation);
+                var methodName = AnalyzerHelpers.GetMethodName(invocation);
 
                 if (methodName == "DropColumn")
                 {
-                    var columnName = ExtractNameArgument(invocation);
+                    var columnName = AnalyzerHelpers.ExtractNameArgument(invocation);
                     if (columnName is not null)
                     {
                         var line = invocation.GetLocation().GetLineSpan().StartLinePosition.Line + 1;
@@ -41,7 +41,7 @@ public class DropAddColumnAnalyzer : IMigrationAnalyzer
                 }
                 else if (methodName == "AddColumn")
                 {
-                    var columnName = ExtractNameArgument(invocation);
+                    var columnName = AnalyzerHelpers.ExtractNameArgument(invocation);
                     if (columnName is not null)
                         addColumnNames.Add(columnName);
                 }
@@ -65,27 +65,4 @@ public class DropAddColumnAnalyzer : IMigrationAnalyzer
         return issues;
     }
 
-    private static string? GetMethodName(InvocationExpressionSyntax invocation) =>
-        invocation.Expression switch
-        {
-            MemberAccessExpressionSyntax member => member.Name.Identifier.Text,
-            IdentifierNameSyntax identifier => identifier.Identifier.Text,
-            _ => null
-        };
-
-    private static string? ExtractNameArgument(InvocationExpressionSyntax invocation)
-    {
-        var args = invocation.ArgumentList.Arguments;
-
-        var namedArg = args.FirstOrDefault(a =>
-            a.NameColon?.Name.Identifier.Text == "name");
-
-        if (namedArg?.Expression is LiteralExpressionSyntax namedLiteral)
-            return namedLiteral.Token.ValueText;
-
-        if (args.Count > 0 && args[0].Expression is LiteralExpressionSyntax positionalLiteral)
-            return positionalLiteral.Token.ValueText;
-
-        return null;
-    }
 }
