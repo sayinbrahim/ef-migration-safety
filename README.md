@@ -1,5 +1,7 @@
 # ef-migration-safety
 
+[![NuGet](https://img.shields.io/nuget/v/EfMigrationSafety.Cli.svg)](https://www.nuget.org/packages/EfMigrationSafety.Cli) [![NuGet Downloads](https://img.shields.io/nuget/dt/EfMigrationSafety.Cli.svg)](https://www.nuget.org/packages/EfMigrationSafety.Cli) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Static safety analyzer for EF Core migrations. Catch destructive operations before they hit your database.**
 
 ---
