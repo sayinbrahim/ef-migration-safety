@@ -52,6 +52,7 @@ checkCommand.SetHandler(async (InvocationContext context) =>
         new NonNullableWithoutDefaultAnalyzer(),
         new EmptyDownMethodAnalyzer(),
         new RenameOperationAnalyzer(),
+        new AlterColumnTruncationAnalyzer(),
     ];
 
     var allIssues = new List<SafetyIssue>();

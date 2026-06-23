@@ -1,0 +1,35 @@
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+namespace MyApp.Data.Migrations
+{
+    /// <inheritdoc />
+    public partial class CapBiographyColumn : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<string>(
+                name: "Biography",
+                table: "Authors",
+                type: "nvarchar(100)",
+                oldType: "nvarchar(max)",
+                nullable: true,
+                oldNullable: true);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.AlterColumn<string>(
+                name: "Biography",
+                table: "Authors",
+                type: "nvarchar(max)",
+                oldType: "nvarchar(100)",
+                nullable: true,
+                oldNullable: true);
+        }
+    }
+}

@@ -59,6 +59,7 @@ Summary: 10 file(s) clean, 1 with info, 1 with warnings.
 | `NonNullableWithoutDefault` | **Implemented** | Adding a non-nullable column to an existing table without a default value — fails on non-empty tables |
 | `EmptyDownMethod` | **Implemented** | `Down()` method that is empty or throws `NotImplementedException` — makes rollbacks impossible |
 | `RenameOperation` | **Implemented** (Info) | `RenameColumn` / `RenameTable` without coordinated application code update — breaks running instances |
+| `AlterColumnTruncation` | **Implemented** | `AlterColumn` reducing the size of `nvarchar`, `varchar`, `char`, or `nchar` columns — causes silent data truncation in production if existing rows exceed the new size |
 
 ---
 
@@ -66,7 +67,6 @@ Summary: 10 file(s) clean, 1 with info, 1 with warnings.
 
 See [ROADMAP.md](ROADMAP.md) for the full list of planned checks. Near-term additions:
 
-- Detect `ALTER COLUMN` type changes that truncate data (e.g., `nvarchar(256)` → `nvarchar(50)`)
 - Detect index creation on large tables without `ONLINE = ON`
 - Detect missing transactions wrapping multi-step migrations
 - `--baseline` flag to suppress known-safe issues with an inline comment
