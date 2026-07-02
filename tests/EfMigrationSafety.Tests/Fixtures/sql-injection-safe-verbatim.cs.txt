@@ -1,0 +1,13 @@
+using Microsoft.EntityFrameworkCore.Migrations;
+
+public partial class SafeVerbatim : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.Sql(@"
+            CREATE INDEX IX_Users_Email ON Users(Email);
+        ");
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder) { }
+}

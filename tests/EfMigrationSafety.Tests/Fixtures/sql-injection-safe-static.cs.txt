@@ -1,0 +1,11 @@
+using Microsoft.EntityFrameworkCore.Migrations;
+
+public partial class SafeSql_Static : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.Sql("UPDATE Users SET Status = 'Active'");
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder) { }
+}

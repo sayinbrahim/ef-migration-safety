@@ -60,6 +60,7 @@ Summary: 10 file(s) clean, 1 with info, 1 with warnings.
 | `EmptyDownMethod` | **Implemented** | `Down()` method that is empty or throws `NotImplementedException` — makes rollbacks impossible |
 | `RenameOperation` | **Implemented** (Info) | `RenameColumn` / `RenameTable` without coordinated application code update — breaks running instances |
 | `AlterColumnTruncation` | **Implemented** | `AlterColumn` reducing the size of `nvarchar`, `varchar`, `char`, or `nchar` columns — causes silent data truncation in production if existing rows exceed the new size |
+| `SqlInjection` | **Implemented** | Raw `migrationBuilder.Sql()` called with an interpolated string, string concatenation, or `string.Format` — potential SQL injection via dynamic SQL construction |
 
 ---
 

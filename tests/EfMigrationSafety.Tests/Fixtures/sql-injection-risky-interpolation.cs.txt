@@ -1,0 +1,12 @@
+using Microsoft.EntityFrameworkCore.Migrations;
+
+public partial class RiskyInterpolation : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        var name = "Admin";
+        migrationBuilder.Sql($"UPDATE Users SET Name = '{name}'");
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder) { }
+}

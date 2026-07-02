@@ -1,0 +1,13 @@
+using Microsoft.EntityFrameworkCore.Migrations;
+
+public partial class MultipleSqlCalls_Mixed : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.Sql("SELECT 1");
+        var val = "test";
+        migrationBuilder.Sql($"UPDATE X SET Y = '{val}'");
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder) { }
+}

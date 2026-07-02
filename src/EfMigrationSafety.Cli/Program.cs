@@ -53,6 +53,7 @@ checkCommand.SetHandler(async (InvocationContext context) =>
         new EmptyDownMethodAnalyzer(),
         new RenameOperationAnalyzer(),
         new AlterColumnTruncationAnalyzer(),
+        new SqlInjectionAnalyzer(),
     ];
 
     var allIssues = new List<SafetyIssue>();

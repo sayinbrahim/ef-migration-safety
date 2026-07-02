@@ -1,0 +1,12 @@
+using Microsoft.EntityFrameworkCore.Migrations;
+
+public partial class RiskyConcatenation : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        var tableName = "Users";
+        migrationBuilder.Sql("DELETE FROM " + tableName);
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder) { }
+}

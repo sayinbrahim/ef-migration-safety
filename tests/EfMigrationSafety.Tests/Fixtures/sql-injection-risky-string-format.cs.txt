@@ -1,0 +1,12 @@
+using Microsoft.EntityFrameworkCore.Migrations;
+
+public partial class RiskyStringFormat : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        var name = "Admin";
+        migrationBuilder.Sql(string.Format("UPDATE Users SET Name = '{0}'", name));
+    }
+
+    protected override void Down(MigrationBuilder migrationBuilder) { }
+}
